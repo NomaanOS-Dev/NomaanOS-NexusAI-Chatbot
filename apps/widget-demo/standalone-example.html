@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Standalone Script Tag Integration Example — NomaanOS Nexus AI</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 40px;
+      background: #0f172a;
+      color: #f8fafc;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 32px;
+      backdrop-filter: blur(8px);
+    }
+    code {
+      background: #090d16;
+      padding: 3px 6px;
+      border-radius: 4px;
+      color: #38bdf8;
+      font-family: monospace;
+    }
+    pre {
+      background: #090d16;
+      border: 1px solid #334155;
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      color: #e2e8f0;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 16px;
+      }
+      .container {
+        padding: 20px 16px;
+        border-radius: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌐 Standalone Script Embed Showcase</h1>
+    <p>This static HTML page demonstrates embedding the <strong>NomaanOS Nexus AI</strong> chat widget using a standalone <code>&lt;script&gt;</code> bundle with zero build steps or bundlers required.</p>
+    
+    <h3>HTML Embed Code</h3>
+    <pre>&lt;!-- 1. Include Nexus Chat Widget CSS --&gt;
+&lt;link rel="stylesheet" href="http://localhost:4001/widget/style.css"&gt;
+
+&lt;!-- 2. Include Standalone Script Bundle --&gt;
+&lt;script 
+  src="http://localhost:4001/widget/nexus-widget.umd.js"
+  data-assistant-id="4f9d1462-8321-4f11-8be8-2d83ba32d1e0"
+  data-api-base-url="http://localhost:4001"
+  data-position="bottom-right"
+  async&gt;
+&lt;/script&gt;</pre>
+
+    <h3>Programmatic Control API</h3>
+    <p>The standalone bundle exposes <code>window.NexusWidget</code> for advanced control:</p>
+    <pre>// Initialize programmatically
+window.NexusWidget.init({
+  assistantId: '4f9d1462-8321-4f11-8be8-2d83ba32d1e0',
+  apiBaseUrl: 'http://localhost:4001',
+  position: 'bottom-right'
+});
+
+// Destroy / unmount instance
+window.NexusWidget.destroy();</pre>
+  </div>
+
+  <!-- Embed Widget Bundle -->
+  <link rel="stylesheet" href="../../packages/widget/dist/style.css">
+  <script 
+    src="../../packages/widget/dist/nexus-widget.umd.js"
+    data-assistant-id="4f9d1462-8321-4f11-8be8-2d83ba32d1e0"
+    data-api-base-url="http://localhost:4001"
+    data-position="bottom-right">
+  </script>
+</body>
+</html>
+

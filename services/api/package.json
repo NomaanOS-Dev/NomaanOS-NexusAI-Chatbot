@@ -1,0 +1,44 @@
+{
+  "name": "@nomaanos/nexus-api",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "NomaanOS Nexus AI Core API Server",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "test": "vitest run --fileParallelism=false --testTimeout=30000",
+    "migrate": "tsx src/database/migrate.ts",
+    "migrate:status": "tsx src/database/migrate.ts --status"
+  },
+  "dependencies": {
+    "@nomaanos/nexus-shared-types": "*",
+    "@types/multer": "^1.4.12",
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.13.3",
+    "pino": "^9.6.0",
+    "pino-http": "^10.4.0",
+    "uuid": "^11.1.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.9",
+    "@types/pg": "^8.11.11",
+    "@types/supertest": "^6.0.2",
+    "@types/uuid": "^10.0.0",
+    "pino-pretty": "^13.0.0",
+    "supertest": "^7.0.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  }
+}

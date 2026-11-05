@@ -1,0 +1,40 @@
+{
+  "manifest": {
+    "version": "1.0.0",
+    "packageId": "b51b1d46-3cd3-426c-8488-bf81dc61ff41",
+    "exportedAt": "2026-11-02T11:27:12.736Z",
+    "sourceWorkspaceId": "abde28dc-51dc-4ab1-8a20-319a12c4f8c5",
+    "knowledgeSpaceName": "Classified Runbooks",
+    "knowledgeSpaceSlug": "classified-runbooks-1793618821189",
+    "documentCount": 1,
+    "chunkCount": 1,
+    "embeddingModel": "nomic-embed-text",
+    "checksum": "8cbb027e3f5c070ff01260131417dc7ef827fb159872b83d556f2e3c034e30e7"
+  },
+  "documents": [
+    {
+      "sourceId": "2dc26a01-3818-4e57-b2fa-7ae8b0e69677",
+      "title": "Air-Gap Protocol Guide",
+      "filename": "air-gap.md",
+      "mimeType": "text/markdown",
+      "fileSizeBytes": 2048,
+      "sha256": "sha256-airgap-hash",
+      "metadata": {},
+      "versionNumber": 1,
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "content": "In an air-gapped environment, optical media or flash drives transfer updates via an approved data diode protocol.",
+          "tokenCount": 25,
+          "sectionPath": "Security/AirGapProtocols",
+          "pageNumber": 1,
+          "sourceOffset": 0,
+          "metadata": {
+            "offlineVerified": true
+          },
+          "embedding": null
+        }
+      ]
+    }
+  ]
+}

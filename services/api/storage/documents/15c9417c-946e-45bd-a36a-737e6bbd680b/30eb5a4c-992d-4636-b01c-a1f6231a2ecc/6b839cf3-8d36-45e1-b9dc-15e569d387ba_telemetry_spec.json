@@ -1,0 +1,1 @@
+{"api":"NomaanOS Core Telemetry","version":"2.4.0","endpoints":[{"path":"/v1/telemetry/events","method":"POST","auth":"bearer"},{"path":"/v1/telemetry/metrics","method":"GET","auth":"bearer"}],"security":{"tlsRequired":true,"minTlsVersion":"1.3"}}

@@ -1,0 +1,7 @@
+NomaanOS Nexus AI Day 6 Manual Test
+Document Type: Plain Text
+Test ID: DAY6-TXT-001
+
+This is a test document for the knowledge source extraction pipeline.
+The platform should extract and preserve this text.
+Unique test phrase: BLUE-ORBIT-7391.

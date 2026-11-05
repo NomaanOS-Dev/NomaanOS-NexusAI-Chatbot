@@ -1,0 +1,30 @@
+{
+  "name": "nomaanos-nexus-ai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NomaanOS Nexus AI: Unified, multi-tenant AI assistant and RAG platform.",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev --workspace=services/api",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspace=services/api",
+    "test:api": "npm run test --workspace=services/api",
+    "test:parser": "python -m pytest services/parser/tests",
+    "test:all": "npm run test:parser && npm run test:api",
+    "db:up": "docker compose up -d database",
+    "db:sync-user": "docker exec -i nomaanos-nexus-database bash /scripts/ensure-db-user.sh",
+    "db:down": "docker compose down",
+    "db:reset": "docker compose down -v && docker compose up -d database",
+    "db:migrate": "npm run migrate --workspace=services/api",
+    "db:status": "npm run migrate:status --workspace=services/api",
+    "db:seed": "node scripts/seed-demo.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
+}
+

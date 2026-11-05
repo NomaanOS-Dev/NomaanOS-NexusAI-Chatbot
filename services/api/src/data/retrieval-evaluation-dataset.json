@@ -1,0 +1,134 @@
+{
+  "version": "1.0.0",
+  "name": "NomaanOS Nexus AI - Retrieval Quality & Authorization Benchmark",
+  "description": "Standardized evaluation dataset for measuring Recall@K, Precision@K, MRR, nDCG@K, and cross-tenant access control.",
+  "benchmarkQueries": [
+    {
+      "id": "q-exact-01",
+      "query": "ERR_AUTH_EXPIRED",
+      "category": "exact_lookup",
+      "targetKeywords": ["ERR_AUTH_EXPIRED", "TTL"],
+      "expectedRelevantTerms": ["ERR_AUTH_EXPIRED", "15-minute TTL", "auth service"],
+      "groundTruth": {
+        "relevanceGrade": 3,
+        "description": "Exact match for authentication token expiration error code."
+      }
+    },
+    {
+      "id": "q-exact-02",
+      "query": "/api/v1/auth/login",
+      "category": "exact_lookup",
+      "targetKeywords": ["/api/v1/auth/login", "authentication"],
+      "expectedRelevantTerms": ["/api/v1/auth/login", "authentication failure"],
+      "groundTruth": {
+        "relevanceGrade": 3,
+        "description": "Exact match for client authentication login endpoint."
+      }
+    },
+    {
+      "id": "q-exact-03",
+      "query": "node-prod-42",
+      "category": "exact_lookup",
+      "targetKeywords": ["node-prod-42", "ingress"],
+      "expectedRelevantTerms": ["node-prod-42", "primary ingress revalidation proxy"],
+      "groundTruth": {
+        "relevanceGrade": 3,
+        "description": "Exact match for canary proxy node identifier."
+      }
+    },
+    {
+      "id": "q-nl-01",
+      "query": "How do I configure OAuth with mTLS mutual authentication?",
+      "category": "knowledge_question",
+      "targetKeywords": ["OAuth", "mTLS", "mutual"],
+      "expectedRelevantTerms": ["OAuth 2.1", "mTLS mutual authentication", "federated access"],
+      "groundTruth": {
+        "relevanceGrade": 3,
+        "description": "Conceptual question about OAuth 2.1 mutual TLS protocol."
+      }
+    },
+    {
+      "id": "q-nl-02",
+      "query": "What is the token TTL policy when authentication fails?",
+      "category": "knowledge_question",
+      "targetKeywords": ["TTL", "token", "expire"],
+      "expectedRelevantTerms": ["15-minute TTL", "ERR_AUTH_EXPIRED", "tokens expire"],
+      "groundTruth": {
+        "relevanceGrade": 3,
+        "description": "Explanation of session TTL and expiration policy."
+      }
+    },
+    {
+      "id": "q-nl-03",
+      "query": "What is the failover strategy when the ingress proxy has high latency?",
+      "category": "knowledge_question",
+      "targetKeywords": ["failover", "node-prod-43", "latencies"],
+      "expectedRelevantTerms": ["elevated latencies", "node-prod-43", "failover"],
+      "groundTruth": {
+        "relevanceGrade": 3,
+        "description": "Operational failover procedure for edge proxy hosts."
+      }
+    },
+    {
+      "id": "q-nl-04",
+      "query": "What is the Kafka broker hostname for telemetry ingestion?",
+      "category": "knowledge_question",
+      "targetKeywords": ["Kafka", "kafka-broker-01.internal"],
+      "expectedRelevantTerms": ["kafka-broker-01.internal", "Kafka broker"],
+      "groundTruth": {
+        "relevanceGrade": 3,
+        "description": "Direct hostname lookup for internal Kafka broker."
+      }
+    },
+    {
+      "id": "q-multipart-01",
+      "query": "How do I configure OAuth and what node operates as ingress proxy?",
+      "category": "knowledge_question",
+      "isMultiPart": true,
+      "targetKeywords": ["OAuth", "node-prod-42"],
+      "expectedRelevantTerms": ["OAuth 2.1", "node-prod-42"],
+      "groundTruth": {
+        "relevanceGrade": 3,
+        "description": "Compound multi-part inquiry spanning auth config and node topology."
+      }
+    },
+    {
+      "id": "q-ambiguous-01",
+      "query": "it failed",
+      "category": "ambiguous",
+      "targetKeywords": [],
+      "expectedRelevantTerms": [],
+      "groundTruth": {
+        "relevanceGrade": 0,
+        "description": "Underspecified query that should trigger clarification without search."
+      }
+    },
+    {
+      "id": "q-negative-01",
+      "query": "Quantum entanglement particle accelerator configuration manual",
+      "category": "unsupported",
+      "targetKeywords": [],
+      "expectedRelevantTerms": [],
+      "groundTruth": {
+        "relevanceGrade": 0,
+        "description": "Out-of-scope query where insufficient evidence must be returned."
+      }
+    }
+  ],
+  "accessControlTestCases": [
+    {
+      "id": "sec-cross-tenant-01",
+      "name": "Cross-Workspace Intrusion",
+      "description": "User B from Workspace B attempts retrieval in Knowledge Space A",
+      "expectedStatusCode": [403, 404],
+      "expectZeroLeakage": true
+    },
+    {
+      "id": "sec-superseded-version-01",
+      "name": "Superseded Document Chunk Exclusion",
+      "description": "Query matching content from superseded Version 1 must strictly return zero Version 1 chunks when Version 2 is active",
+      "expectSupersededZero": true
+    }
+  ]
+}
+

@@ -1,0 +1,26 @@
+services:
+  database:
+    image: pgvector/pgvector:pg16
+    container_name: nomaanos-nexus-database
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME:-nomaanos_nexus_ai}
+      POSTGRES_USER: ${DATABASE_USER:-nexus_dev}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-nexus_local_dev_secret_2026}
+    ports:
+      # Conservative local-only binding to prevent accidental external network exposure
+      - "127.0.0.1:${DATABASE_PORT:-5434}:5432"
+    volumes:
+      - nexus_postgres_data:/var/lib/postgresql/data
+      - ./scripts/ensure-db-user.sh:/docker-entrypoint-initdb.d/01-ensure-user.sh:ro
+      - ./scripts/ensure-db-user.sh:/scripts/ensure-db-user.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USER:-nexus_dev} -d ${DATABASE_NAME:-nomaanos_nexus_ai}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  nexus_postgres_data:
+    name: nomaanos_nexus_postgres_data

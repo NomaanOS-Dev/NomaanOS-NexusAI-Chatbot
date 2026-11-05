@@ -1,0 +1,20 @@
+{
+  "name": "@nomaanos/nexus-shared-types",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Canonical TypeScript types and Zod schemas for NomaanOS Nexus AI",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  }
+}
+

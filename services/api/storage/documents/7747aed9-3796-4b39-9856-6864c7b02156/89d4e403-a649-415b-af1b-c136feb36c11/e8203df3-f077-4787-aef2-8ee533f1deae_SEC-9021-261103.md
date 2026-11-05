@@ -1,0 +1,9 @@
+# Sentinel Runbook SEC-9021: SSH Brute-Force Response
+
+## Overview
+When unauthorized SSH brute-force attempts on port 22 are detected by network edge sensors, automated quarantine procedures must execute within 15 seconds.
+
+## Action Steps
+1. The edge firewall immediately blocks the source IP address for 72 hours.
+2. An automated incident ticket is raised in the Sentinel SOC portal.
+3. Telemetry is forwarded to SIEM with severity HIGH.
